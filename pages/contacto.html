@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | MYR Proyectos y Construcciones</title>
+    <meta name="description" content="Cuéntanos tu idea de proyecto de construcción o remodelación. El equipo de MYR te asesora personalmente.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .contacto-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .contacto-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+        .contacto-hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        #chatbot-container {
+            max-width: 640px;
+            margin: -40px auto 60px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #chatbot-header {
+            background: #0f172a;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+        .cb-avatar {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #d4ac0d, #f5d033);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700; color: #0f172a;
+            flex-shrink: 0;
+        }
+        .cb-info strong { color: #fff; font-size: 1rem; display: block; }
+        .cb-info span { color: #94a3b8; font-size: 0.82rem; }
+
+        #chat-logs {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+            min-height: 360px;
+        }
+
+        .msg-bot {
+            background: #0f172a;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 16px 16px 16px 4px;
+            max-width: 85%;
+            align-self: flex-start;
+            line-height: 1.55;
+            font-size: 0.93rem;
+            animation: fadeInMsg 0.25s ease;
+        }
+        .msg-user {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 12px 16px;
+            border-radius: 16px 16px 4px 16px;
+            max-width: 85%;
+            align-self: flex-end;
+            font-size: 0.93rem;
+            font-weight: 500;
+            line-height: 1.55;
+            animation: fadeInMsg 0.2s ease;
+        }
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        #chat-input-area {
+            padding: 16px 20px;
+            border-top: 1px solid #e2e8f0;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .opciones-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn-chat-opcion {
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-chat-opcion:hover {
+            background: #1e293b;
+            transform: scale(1.03);
+        }
+        .input-row { display: flex; gap: 10px; }
+        .input-chat-texto {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+            font-size: 0.93rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .input-chat-texto:focus { border-color: #0f172a; }
+        .btn-chat-enviar {
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .btn-chat-enviar:hover { background: #1e293b; }
+
+        .contacto-info {
+            max-width: 640px;
+            margin: 0 auto 80px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        .info-card {
+            flex: 1;
+            min-width: 200px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .info-card .ic-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .info-card strong { display: block; font-size: 0.85rem; color: #64748b; margin-bottom: 2px; }
+        .info-card span { font-size: 1rem; color: #0f172a; font-weight: 600; }
+    </style>
+</head>
+
+<body>
+    <header class="header" id="main-header"></header>
+
+    <!-- Hero de contacto -->
+    <div class="contacto-hero">
+        <div class="container">
+            <h1>Hablemos de tu proyecto</h1>
+            <p>¿Tienes una idea en mente? Cuéntanosla — nuestro equipo te asesora para convertirla en realidad.</p>
+        </div>
+    </div>
+
+    <section class="section-light" style="padding-top: 60px; padding-bottom: 20px;">
+        <div class="container" style="display: flex; justify-content: center;">
+
+            <!-- Chatbot completo -->
+            <div id="chatbot-container">
+                <div id="chatbot-header">
+                    <div class="cb-avatar">M</div>
+                    <div class="cb-info">
+                        <strong>Asesor MYR Proyectos</strong>
+                        <span>⬤ En línea — Respuesta rápida</span>
+                    </div>
+                </div>
+                <div id="chat-logs"></div>
+                <div id="chat-input-area"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Info de contacto directo -->
+    <section class="section-light" style="padding-top: 10px; padding-bottom: 80px;">
+        <div class="contacto-info">
+            <div class="info-card">
+                <div class="ic-icon">📞</div>
+                <div>
+                    <strong>Teléfono / WhatsApp</strong>
+                    <span>3188749076</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="ic-icon">📍</div>
+                <div>
+                    <strong>Dirección</strong>
+                    <span>Cra 2ª A Sur, Ibagué, Tolima</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="main-footer"></footer>
+
+    <!-- Firebase compat (no ES modules — funciona con file:// y cualquier servidor) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyAsoU-fVdJKq-w4tCJk7rYC1lzDaMv-jTM",
+            authDomain: "constructora-myr.firebaseapp.com",
+            projectId: "constructora-myr",
+            storageBucket: "constructora-myr.firebasestorage.app",
+            messagingSenderId: "270011059674",
+            appId: "1:270011059674:web:5fd43d64861dfe456d44e3"
+        });
+        const db = firebase.firestore();
+    </script>
+
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+        // ── Chatbot en página completa ────────────────────────────────────
+        const chatLogs = document.getElementById('chat-logs');
+        const chatInputArea = document.getElementById('chat-input-area');
+
+        let formData = {};
+        let currentFlow = '';
+        let currentStepIndex = 0;
+
+        const flowConfig = {
+            start: {
+                botMsg: '¡Hola! 👋 Bienvenido a MYR Proyectos. ¿En qué te podemos ayudar hoy?',
+                type: 'options',
+                options: ['Remodelación', 'Construcción de vivienda', 'Proyectos urbanísticos', 'Acabados y carpintería']
+            },
+            'Remodelación': [
+                { key: 'spaceToRemodel', botMsg: '¿Qué espacio quieres remodelar? (Ej. Cocina, baño, sala completa...)', type: 'text' },
+                { key: 'problemToSolve', botMsg: '¿Qué problema principal quieres solucionar con esta remodelación?', type: 'text' },
+                { key: 'approxArea', botMsg: '¿Cuál es el área aproximada a remodelar en m²?', type: 'text' }
+            ],
+            'Construcción de vivienda': [
+                { key: 'hasLot', botMsg: '¿Cuentas con un lote para la construcción?', type: 'options', options: ['Sí, tengo lote', 'No tengo lote aún'] },
+                { key: 'constructionArea', botMsg: '¿Cuál es el área aproximada que deseas construir?', type: 'text' },
+                { key: 'currentStage', botMsg: '¿En qué etapa se encuentra tu proyecto actualmente?', type: 'text' }
+            ],
+            'Proyectos urbanísticos': [
+                { key: 'hasLand', botMsg: '¿Cuentas ya con el terreno para el proyecto?', type: 'options', options: ['Sí', 'No'] },
+                { key: 'whatToDevelop', botMsg: '¿Qué tipo de proyecto te gustaría desarrollar? (Ej. Condominio, loteo, locales...)', type: 'text' },
+                { key: 'mainObjective', botMsg: '¿Cuál es tu objetivo principal? (Vender, rentar, uso propio...)', type: 'text' },
+                { key: 'landSize', botMsg: '¿Cuál es el tamaño aproximado del terreno?', type: 'text' }
+            ],
+            'Acabados y carpintería': [
+                { key: 'whatNeed', botMsg: '¿Qué tipo de acabados o carpintería necesitas? (Ej. Closets, puertas, pisos...)', type: 'text' },
+                { key: 'problemToSolveAcabados', botMsg: '¿Qué necesidad buscas resolver con este trabajo?', type: 'text' },
+                { key: 'spaceSize', botMsg: '¿Cuál es el tamaño del espacio a intervenir?', type: 'text' }
+            ],
+            final: [
+                { key: 'fullName', botMsg: '¡Perfecto! Para coordinar tu asesoría, ¿cuál es tu nombre completo?', type: 'text' },
+                { key: 'contactNumber', botMsg: '¿A qué número de teléfono o WhatsApp te podemos contactar?', type: 'text' },
+                { key: 'acceptHabeasData', botMsg: 'Al enviar tu información, aceptas nuestros Términos y Condiciones y Política de Privacidad (Normativa Habeas Data en Colombia). ¿Aceptas y deseas continuar?', type: 'options', options: ['Sí, acepto y quiero continuar'] }
+            ]
+        };
+
+        function addBotMessage(msg) {
+            const div = document.createElement('div');
+            div.className = 'msg-bot';
+            div.textContent = msg;
+            chatLogs.appendChild(div);
+            chatLogs.scrollTop = chatLogs.scrollHeight;
+        }
+
+        function addUserMessage(msg) {
+            const div = document.createElement('div');
+            div.className = 'msg-user';
+            div.textContent = msg;
+            chatLogs.appendChild(div);
+            chatLogs.scrollTop = chatLogs.scrollHeight;
+        }
+
+        function renderInput(stepConfig) {
+            chatInputArea.innerHTML = '';
+            if (stepConfig.type === 'options') {
+                const container = document.createElement('div');
+                container.className = 'opciones-container';
+                stepConfig.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-chat-opcion';
+                    btn.textContent = opt;
+                    btn.onclick = () => handleUserInput(opt, stepConfig.key);
+                    container.appendChild(btn);
+                });
+                chatInputArea.appendChild(container);
+            } else {
+                const row = document.createElement('div');
+                row.className = 'input-row';
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'input-chat-texto';
+                input.placeholder = 'Escribe tu respuesta...';
+                const btn = document.createElement('button');
+                btn.className = 'btn-chat-enviar';
+                btn.textContent = '→';
+                const submit = () => {
+                    const val = input.value.trim();
+                    if (val) handleUserInput(val, stepConfig.key);
+                };
+                btn.onclick = submit;
+                input.onkeypress = (e) => { if (e.key === 'Enter') submit(); };
+                row.appendChild(input);
+                row.appendChild(btn);
+                chatInputArea.appendChild(row);
+                input.focus();
+            }
+        }
+
+        function handleUserInput(value, key) {
+            addUserMessage(value);
+            if (currentFlow === '') {
+                formData.serviceType = value;
+                currentFlow = value;
+                currentStepIndex = 0;
+                setTimeout(nextStep, 350);
+            } else {
+                formData[key] = value;
+                currentStepIndex++;
+                setTimeout(nextStep, 350);
+            }
+        }
+
+        async function nextStep() {
+            const steps = flowConfig[currentFlow] || [];
+            if (currentStepIndex < steps.length) {
+                addBotMessage(steps[currentStepIndex].botMsg);
+                renderInput(steps[currentStepIndex]);
+            } else {
+                const fi = currentStepIndex - steps.length;
+                const finalSteps = flowConfig.final;
+                if (fi < finalSteps.length) {
+                    addBotMessage(finalSteps[fi].botMsg);
+                    renderInput(finalSteps[fi]);
+                } else {
+                    chatInputArea.innerHTML = '<p style="font-size:0.9rem;color:#64748b;margin:0;text-align:center;padding:8px 0;">Enviando tu solicitud...</p>';
+                    try {
+                        formData.createdAt = new Date();
+                        formData.source = 'pagina_contacto';
+                        await db.collection('leads_clientes').add(formData);
+                        addBotMessage('✅ ¡Listo! Recibimos toda tu información. Un asesor de MYR se comunicará contigo muy pronto. ¡Gracias por contactarnos!');
+                        chatInputArea.innerHTML = '';
+                    } catch (e) {
+                        console.error(e);
+                        addBotMessage('Hubo un problema al enviar tu solicitud. Por favor escríbenos directamente al WhatsApp 3188749076.');
+                        chatInputArea.innerHTML = '';
+                    }
+                }
+            }
+        }
+
+        // Arranca el chat
+        setTimeout(() => {
+            addBotMessage(flowConfig.start.botMsg);
+            renderInput(flowConfig.start);
+        }, 500);
+    </script>
+</body>
+
+</html>
